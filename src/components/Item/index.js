@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+
 import './styles.css';
 
 export default class Item extends Component {
     render() {
 
         const dados = this.props.dados;
-        console.log(dados);
         return (
             <div className="item">
                 <h1>{dados.titulo}</h1>
