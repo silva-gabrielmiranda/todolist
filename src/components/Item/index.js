@@ -18,8 +18,6 @@ export default class Item extends Component {
     }
     inputHandle(event){
         this.setState({ novoItemList: event.target.value });
-        console.log(this.state.novoItemList);
-        console.log(event)
     }
 
     render() {

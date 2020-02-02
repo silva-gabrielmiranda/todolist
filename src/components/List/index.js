@@ -24,25 +24,21 @@ export default class List extends Component {
 
     handleChange(event) {
         this.setState({ newItem: JSON.parse(event.target.value) });
-        console.log(this.state.newItem);
     }
     verificaEstado() {
-        console.log("Verifica state", this.state)
+        console.log("Verifica state", this.state);
     }
     addItemLista(novoItem, id) {
-        console.log("Objeto: ", novoItem);
-        console.log("id", id);
-        let oldItem = this.state.item.filter(item => item._id !== id).concat(novoItem);
-        console.log("Item filtrado pelo ID: " + id, oldItem);
-        console.log("novoItem após alteração" + id, novoItem);
-        oldItem.sort((a,b) => a - b);
+        let indexItem = this.state.item.indexOf(this.state.item.filter(item => item._id === id)[0]);
+        let oldItem = this.state.item;
+        oldItem[indexItem] = novoItem;
         this.setState({item: oldItem});
     }
 
     render() {
         return (
             <div>
-                {this.state.item.map(bloco => <Item dados={bloco} addItem={this.addItemLista} />)}
+                {this.state.item.map(bloco => <Item dados={bloco} addItem={this.addItemLista} key={bloco._id}/>)}
                 <input onChange={this.handleChange} />
                 <button onClick={this.createNewItem}>Adicionar</button>
                 <button onClick={this.verificaEstado}>Verifica State</button>
